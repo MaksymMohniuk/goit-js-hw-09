@@ -12,7 +12,7 @@ function getRandomHexColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   };
 
-  function changeColor(color) {
+  function changeColor() {
     document.body.style.background = getRandomHexColor();
 };
 
