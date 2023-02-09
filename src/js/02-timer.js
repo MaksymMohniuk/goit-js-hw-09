@@ -12,8 +12,6 @@ const outputMinutes = document.querySelector('[data-minutes]');
 const outputSeconds = document.querySelector('[data-seconds]');
 let countDownDate;
 
-const calendar = flatpickr(input, options);
-
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -34,6 +32,8 @@ const options = {
       }
     },
   };
+
+  flatpickr(button, options);
 
   button.addEventListener('click', startTimer);
 
@@ -71,6 +71,6 @@ const options = {
     clearInterval(intervalId);
   }
 
-  function addZero(Number) {
+  function addZero(number) {
     return String(number).padStart(2, 0);
   }
