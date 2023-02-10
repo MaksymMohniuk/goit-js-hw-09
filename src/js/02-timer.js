@@ -11,6 +11,7 @@ const outputHours = document.querySelector('[data-hours]');
 const outputMinutes = document.querySelector('[data-minutes]');
 const outputSeconds = document.querySelector('[data-seconds]');
 let countDownDate;
+const now = Date.now();
 
 const options = {
     enableTime: true,
@@ -21,13 +22,13 @@ const options = {
       countDownDate = selectedDates[0];
       console.log(selectedDates[0]);
 
-      if(countDownDate < Date.now) {
+      if(countDownDate < now) {
         alert('Please choose a date in the future')
         return;
       }
-      if(countDownDate > Date.now) {
+      if(countDownDate > now) {
         button.disabled = false;
-        const diff = countDownDate - Date.now;
+        const diff = countDownDate - now;
         return diff;
       }
     },
@@ -40,7 +41,7 @@ const options = {
   const intervalId = setInterval(startTimer, 1000);
 
   function startTimer() {
-    const diff = countDownDate - Date.now;
+    const diff = countDownDate - now;
     const { days, hours, minutes, seconds } = convertMs(diff);
     outputDays.textContent = `${days}`;
     outputHours.textContent = `${addZero(hours)}`;
@@ -74,3 +75,5 @@ const options = {
   function addZero(number) {
     return String(number).padStart(2, 0);
   }
+
+  reloadPage();
