@@ -23,6 +23,7 @@ const options = {
       console.log(selectedDates[0]);
 
       if(countDownDate < now) {
+        button.disabled = true;
         alert('Please choose a date in the future')
         return;
       }
@@ -34,11 +35,11 @@ const options = {
     },
   };
 
-  flatpickr(button, options);
+  flatpickr("input#datetime-picker", options);
 
-  button.addEventListener('click', startTimer);
-
-  const intervalId = setInterval(startTimer, 1000);
+  button.addEventListener('click', () => {
+    intervalId = setInterval(startTimer, 1000)
+  });
 
   function startTimer() {
     const diff = countDownDate - now;
@@ -47,6 +48,7 @@ const options = {
     outputHours.textContent = `${addZero(hours)}`;
     outputMinutes.textContent = `${addZero(minutes)}`;
     outputSeconds.textContent = `${addZero(seconds)}`;
+    return diff;
   }
 
   function convertMs(ms) {
@@ -68,12 +70,12 @@ const options = {
     return { days, hours, minutes, seconds };
   }
 
-  function reloadPage() {
-    clearInterval(intervalId);
-  }
+  // function reloadPage() {
+  //   clearInterval(intervalId);
+  // }
 
   function addZero(number) {
     return String(number).padStart(2, 0);
   }
 
-  reloadPage();
+ 
