@@ -48,7 +48,6 @@ const options = {
     outputHours.textContent = `${addZero(hours)}`;
     outputMinutes.textContent = `${addZero(minutes)}`;
     outputSeconds.textContent = `${addZero(seconds)}`;
-    return diff;
   }
 
   function convertMs(ms) {
@@ -77,5 +76,6 @@ const options = {
   function addZero(number) {
     return String(number).padStart(2, 0);
   }
+
 
  
