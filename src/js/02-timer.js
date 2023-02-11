@@ -1,6 +1,7 @@
 
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 flatpickr("input#datetime-picker", {});
 
@@ -24,7 +25,7 @@ const options = {
 
       if(countDownDate < now) {
         button.disabled = true;
-        alert('Please choose a date in the future')
+        Notiflix.Notify.failure('Please choose a date in the future')
         return;
       }
       if(countDownDate > now) {
@@ -69,13 +70,15 @@ const options = {
     return { days, hours, minutes, seconds };
   }
 
-  // function reloadPage() {
-  //   clearInterval(intervalId);
-  // }
+  function reloadPage() {
+    if (diff === 0) {
+    clearInterval(intervalId)};
+  }
 
   function addZero(number) {
     return String(number).padStart(2, 0);
   }
 
+  reloadPage();
 
  
