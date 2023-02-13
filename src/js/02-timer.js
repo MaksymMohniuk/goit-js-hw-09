@@ -12,7 +12,6 @@ const outputHours = document.querySelector('[data-hours]');
 const outputMinutes = document.querySelector('[data-minutes]');
 const outputSeconds = document.querySelector('[data-seconds]');
 let countDownDate;
-const now = () => Date.now();
 const diff = 0;
 let intervalId = 0;
 
@@ -25,15 +24,14 @@ const options = {
       countDownDate = selectedDates[0];
       console.log(selectedDates[0]);
 
-      if(countDownDate < now) {
+      if(countDownDate < Date.now()) {
         button.disabled = true;
-        clearInterval(intervalId);
         Notiflix.Notify.failure('Please choose a date in the future')
         return;
       }
-      if(countDownDate > now) {
+      if(countDownDate > Date.now()) {
         button.disabled = false;
-        const diff = countDownDate - now();
+        const diff = countDownDate - Date.now();
       }
     },
   };
@@ -45,17 +43,14 @@ const options = {
   });
 
   function startTimer() {
-    const diff = countDownDate - now();
+    const diff = countDownDate - Date.now();
     const { days, hours, minutes, seconds } = convertMs(diff);
     outputDays.textContent = `${days}`;
     outputHours.textContent = `${addZero(hours)}`;
     outputMinutes.textContent = `${addZero(minutes)}`;
     outputSeconds.textContent = `${addZero(seconds)}`;
-  }
-
-  function stopTimer() {
     if (diff <= 0) {
-    clearInterval(intervalId)};
+      clearInterval(intervalId)}
   }
 
   function convertMs(ms) {
@@ -81,6 +76,5 @@ const options = {
     return String(number).padStart(2, 0);
   }
 
-  stopTimer();
 
  
