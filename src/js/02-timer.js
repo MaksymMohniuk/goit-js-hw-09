@@ -13,7 +13,7 @@ const outputMinutes = document.querySelector('[data-minutes]');
 const outputSeconds = document.querySelector('[data-seconds]');
 let countDownDate;
 const diff = 0;
-let intervalId = 0;
+let intervalId;
 
 const options = {
     enableTime: true,
@@ -45,11 +45,11 @@ const options = {
   function startTimer() {
     const diff = countDownDate - Date.now();
     const { days, hours, minutes, seconds } = convertMs(diff);
-    outputDays.textContent = `${days}`;
+    outputDays.textContent = `${addZero(days)}`;
     outputHours.textContent = `${addZero(hours)}`;
     outputMinutes.textContent = `${addZero(minutes)}`;
     outputSeconds.textContent = `${addZero(seconds)}`;
-    if (diff <= 0) {
+    if (diff <= 999) {
       clearInterval(intervalId)}
   }
 
