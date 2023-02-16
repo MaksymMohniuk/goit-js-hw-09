@@ -12,7 +12,7 @@ function onSubmit(event) {
   event.preventDefault();
   const numberOfPromises = amount[0].value;
   const delayStep = step[0].value;
-  const delayFirst = firstDelay[0].value;
+  const delayFirst = Number(firstDelay[0].value);
   for (let i = 1; i <= numberOfPromises; i +=1) {
     let position = i;
     let delay = delayFirst + delayStep * (position - 1);
